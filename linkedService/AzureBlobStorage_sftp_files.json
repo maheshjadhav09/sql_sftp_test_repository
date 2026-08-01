@@ -1,0 +1,11 @@
+{
+	"name": "AzureBlobStorage_sftp_files",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://storageaccountsftpfiles.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}
