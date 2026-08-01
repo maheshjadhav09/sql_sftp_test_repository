@@ -36,7 +36,10 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"maxRowsPerFile": 100,
-							"fileNamePrefix": "datadump_",
+							"fileNamePrefix": {
+								"value": "datadump_@{pipeline().TriggerTime}",
+								"type": "Expression"
+							},
 							"quoteAllText": true,
 							"fileExtension": ".csv"
 						}
