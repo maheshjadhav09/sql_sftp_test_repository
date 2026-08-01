@@ -1,0 +1,15 @@
+{
+	"name": "adfsftpfactory1111",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7c82295b-13de-45c2-825e-0df0d7e71d40",
+		"tenantId": "2bf6b7c6-bb2b-49a9-8a45-2539a9e75d05"
+	}
+}
