@@ -1,0 +1,23 @@
+{
+	"name": "azureBlob_sftp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_sftp_files",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "sftp_files",
+				"container": "sftpcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
