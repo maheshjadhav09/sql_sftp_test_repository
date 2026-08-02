@@ -35,7 +35,7 @@
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
-							"maxRowsPerFile": 100,
+							"maxRowsPerFile": 500,
 							"fileNamePrefix": {
 								"value": "datadump_@{pipeline().TriggerTime}",
 								"type": "Expression"
