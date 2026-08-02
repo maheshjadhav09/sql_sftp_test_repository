@@ -114,6 +114,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Get_Blob_files').output.childItems",
+						"type": "Expression"
+					},
 					"isSequential": true
 				}
 			}
