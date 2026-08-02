@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "samplefile.csv.gz",
 				"folderPath": "sftp_files",
 				"container": "sftpcontainer"
 			},
