@@ -287,7 +287,15 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://azure.com/6960d20f-4d42-4990-b3b1-890c7bb30bb6/resourceGroups/cplybc_vnet_rg/providers/Microsoft.Compute/virtualMachines/vmadfshir/deallocate?api-version=2023-09-01",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://azure.com"
+					}
+				}
 			}
 		],
 		"annotations": []
