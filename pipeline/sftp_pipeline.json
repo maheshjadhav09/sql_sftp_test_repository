@@ -105,14 +105,7 @@
 			{
 				"name": "ForEachFiles",
 				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Get_Blob_files",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
@@ -316,6 +309,25 @@
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://azure.com"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Get_Blob_files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greater(length(activity('Get_Metadata').output.childItems), 0)",
+						"type": "Expression"
 					}
 				}
 			}
