@@ -227,23 +227,7 @@
 				}
 			},
 			{
-				"name": "Web_VMStop",
-				"type": "WebActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"method": "GET"
-				}
-			},
-			{
-				"name": "Get_SHIR_Status",
+				"name": "Check_VM_Status",
 				"type": "Until",
 				"dependsOn": [
 					{
@@ -267,6 +251,30 @@
 							"userProperties": [],
 							"typeProperties": {
 								"waitTimeInSeconds": 30
+							}
+						},
+						{
+							"name": "Get_SHIR_Status",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"url": {
+									"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.DataFactory/factories/', pipeline().DataFactory, '/integrationRuntimes/', pipeline().parameters.SHIR_Name, '/getStatus?api-version=2018-06-01')\n",
+									"type": "Expression"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://azure.com"
+								}
 							}
 						}
 					],
@@ -294,7 +302,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "POST",
-					"url": "https://azure.com/6960d20f-4d42-4990-b3b1-890c7bb30bb6/resourceGroups/cplybc_vnet_rg/providers/Microsoft.Compute/virtualMachines/vmadfshir/deallocate?api-version=2023-09-01",
+					"url": {
+						"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/deallocate?api-version=2023-09-01')",
+						"type": "Expression"
+					},
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://azure.com"
