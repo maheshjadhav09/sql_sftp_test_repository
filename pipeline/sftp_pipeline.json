@@ -212,7 +212,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "POST",
-					"url": "https://azure.com/6960d20f-4d42-4990-b3b1-890c7bb30bb6/resourceGroups/cplybc_vnet_rg/providers/Microsoft.Compute/virtualMachines/vmadfshir/start?api-version=2023-09-01",
+					"url": {
+						"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/start?api-version=2023-09-01')\n",
+						"type": "Expression"
+					},
 					"connectVia": {
 						"referenceName": "sftpintegrationRuntime",
 						"type": "IntegrationRuntimeReference"
@@ -310,6 +313,10 @@
 			},
 			"SHIR_Name": {
 				"type": "string"
+			},
+			"SubID": {
+				"type": "string",
+				"defaultValue": "6960d20f-4d42-4990-b3b1-890c7bb30bb6"
 			}
 		},
 		"annotations": []
