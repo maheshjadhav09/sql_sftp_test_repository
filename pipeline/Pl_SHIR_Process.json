@@ -1,6 +1,11 @@
 {
 	"name": "Pl_SHIR_Process",
 	"properties": {
+		"parameters": {
+			"FileList": {
+				"type": "array"
+			}
+		},
 		"annotations": []
 	}
 }
