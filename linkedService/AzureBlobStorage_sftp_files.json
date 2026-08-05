@@ -8,7 +8,7 @@
 			"accountKind": "StorageV2"
 		},
 		"connectVia": {
-			"referenceName": "SelfHostedintegrationRuntime",
+			"referenceName": "sftpintegrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
