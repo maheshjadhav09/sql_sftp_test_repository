@@ -209,7 +209,34 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://azure.com/6960d20f-4d42-4990-b3b1-890c7bb30bb6/resourceGroups/cplybc_vnet_rg/providers/Microsoft.Compute/virtualMachines/vmadfshir/start?api-version=2023-09-01",
+					"connectVia": {
+						"referenceName": "sftpintegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"authentication": {
+						"type": "MSI"
+					}
+				}
+			},
+			{
+				"name": "Web_VMStop",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET"
+				}
 			}
 		],
 		"annotations": []
