@@ -299,6 +299,19 @@
 				}
 			}
 		],
+		"parameters": {
+			"Resource_Group_Name": {
+				"type": "string",
+				"defaultValue": "cplybc_vnet_rg"
+			},
+			"VM_Name": {
+				"type": "string",
+				"defaultValue": "vmadfshir"
+			},
+			"SHIR_Name": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
