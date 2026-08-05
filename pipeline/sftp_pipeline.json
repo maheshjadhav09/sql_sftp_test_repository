@@ -313,7 +313,7 @@
 								{
 									"activity": "ForEachFiles",
 									"dependencyConditions": [
-										"Succeeded"
+										"Completed"
 									]
 								}
 							],
