@@ -4,6 +4,18 @@
 		"parameters": {
 			"FileList": {
 				"type": "array"
+			},
+			"Resource_Group_Name": {
+				"type": "string",
+				"defaultValue": "cplybc_vnet_rg"
+			},
+			"VM_Name": {
+				"type": "string",
+				"defaultValue": "vmadfshir"
+			},
+			"SubID": {
+				"type": "string",
+				"defaultValue": "6960d20f-4d42-4990-b3b1-890c7bb30bb6"
 			}
 		},
 		"annotations": []
