@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get_Blob_files').output.childItems",
+						"value": "@pipeline().parameters.FileList",
 						"type": "Expression"
 					},
 					"isSequential": true,
