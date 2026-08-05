@@ -63,7 +63,13 @@
 				"outputs": [
 					{
 						"referenceName": "azureBlob_sftp",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@''",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
@@ -89,7 +95,13 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "azureBlob_sftp",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@''",
+								"type": "Expression"
+							}
+						}
 					},
 					"fieldList": [],
 					"storeSettings": {
