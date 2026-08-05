@@ -239,7 +239,7 @@
 				}
 			},
 			{
-				"name": "Until1",
+				"name": "Get_SHIR_Status",
 				"type": "Until",
 				"dependsOn": [
 					{
@@ -251,6 +251,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('Get_SHIR_Status').output.properties.state, 'Online')",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Wait1",
