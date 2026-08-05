@@ -218,7 +218,8 @@
 						"type": "IntegrationRuntimeReference"
 					},
 					"authentication": {
-						"type": "MSI"
+						"type": "MSI",
+						"resource": "https://azure.com"
 					}
 				}
 			},
