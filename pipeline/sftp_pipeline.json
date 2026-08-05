@@ -103,128 +103,11 @@
 				}
 			},
 			{
-				"name": "ForEachFiles",
-				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Get_Blob_files').output.childItems",
-						"type": "Expression"
-					},
-					"isSequential": true,
-					"activities": [
-						{
-							"name": "CopyBlobFile",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "azureBlob_sftp",
-									"type": "DatasetReference",
-									"parameters": {
-										"FileName": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						},
-						{
-							"name": "DeleteFile",
-							"type": "Delete",
-							"dependsOn": [
-								{
-									"activity": "CopyBlobFile",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"dataset": {
-									"referenceName": "azureBlob_sftp",
-									"type": "DatasetReference",
-									"parameters": {
-										"FileName": "@item().name"
-									}
-								},
-								"enableLogging": false,
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								}
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "Web_VMStart",
-				"type": "WebActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"method": "POST",
-					"url": {
-						"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/start?api-version=2023-09-01')\n",
-						"type": "Expression"
-					},
-					"connectVia": {
-						"referenceName": "sftpintegrationRuntime",
-						"type": "IntegrationRuntimeReference"
-					},
-					"authentication": {
-						"type": "MSI",
-						"resource": "https://azure.com"
-					}
-				}
-			},
-			{
-				"name": "Check_VM_Status",
-				"type": "Until",
+				"name": "If Condition1",
+				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "Web_VMStart",
+						"activity": "Get_Blob_files",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -233,25 +116,202 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('Get_SHIR_Status').output.properties.state, 'Online')",
+						"value": "@greater(length(activity('Get_Blob_Files').output.childItems), 0)",
 						"type": "Expression"
 					},
-					"activities": [
+					"ifTrueActivities": [
 						{
-							"name": "Wait1",
-							"type": "Wait",
-							"dependsOn": [],
+							"name": "ForEachFiles",
+							"type": "ForEach",
+							"dependsOn": [
+								{
+									"activity": "Check_VM_Status",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
-								"waitTimeInSeconds": 30
+								"items": {
+									"value": "@activity('Get_Blob_Files').output.childItems",
+									"type": "Expression"
+								},
+								"isSequential": true,
+								"activities": [
+									{
+										"name": "CopyBlobFile",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "DelimitedTextSource",
+												"storeSettings": {
+													"type": "AzureBlobStorageReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings"
+												}
+											},
+											"enableStaging": false
+										},
+										"inputs": [
+											{
+												"referenceName": "azureBlob_sftp",
+												"type": "DatasetReference",
+												"parameters": {
+													"FileName": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									},
+									{
+										"name": "DeleteFile",
+										"type": "Delete",
+										"dependsOn": [
+											{
+												"activity": "CopyBlobFile",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"dataset": {
+												"referenceName": "azureBlob_sftp",
+												"type": "DatasetReference",
+												"parameters": {
+													"FileName": "@item().name"
+												}
+											},
+											"enableLogging": false,
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											}
+										}
+									}
+								]
 							}
 						},
 						{
-							"name": "Get_SHIR_Status",
+							"name": "Web_VMStart",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"url": {
+									"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/start?api-version=2023-09-01')\n",
+									"type": "Expression"
+								},
+								"connectVia": {
+									"referenceName": "sftpintegrationRuntime",
+									"type": "IntegrationRuntimeReference"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://azure.com"
+								}
+							}
+						},
+						{
+							"name": "Check_VM_Status",
+							"type": "Until",
+							"dependsOn": [
+								{
+									"activity": "Web_VMStart",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(activity('Get_SHIR_Status').output.properties.state, 'Online')",
+									"type": "Expression"
+								},
+								"activities": [
+									{
+										"name": "Wait1",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 30
+										}
+									},
+									{
+										"name": "Get_SHIR_Status",
+										"type": "WebActivity",
+										"dependsOn": [
+											{
+												"activity": "Wait1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"method": "POST",
+											"url": {
+												"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.DataFactory/factories/', pipeline().DataFactory, '/integrationRuntimes/', pipeline().parameters.SHIR_Name, '/getStatus?api-version=2018-06-01')\n",
+												"type": "Expression"
+											},
+											"authentication": {
+												"type": "MSI",
+												"resource": "https://azure.com"
+											}
+										}
+									}
+								],
+								"timeout": "0.12:00:00"
+							}
+						},
+						{
+							"name": "Act_Stop_SHIR_VM",
 							"type": "WebActivity",
 							"dependsOn": [
 								{
-									"activity": "Wait1",
+									"activity": "ForEachFiles",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -268,7 +328,7 @@
 							"typeProperties": {
 								"method": "POST",
 								"url": {
-									"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.DataFactory/factories/', pipeline().DataFactory, '/integrationRuntimes/', pipeline().parameters.SHIR_Name, '/getStatus?api-version=2018-06-01')\n",
+									"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/deallocate?api-version=2023-09-01')",
 									"type": "Expression"
 								},
 								"authentication": {
@@ -277,58 +337,7 @@
 								}
 							}
 						}
-					],
-					"timeout": "0.12:00:00"
-				}
-			},
-			{
-				"name": "Act_Stop_SHIR_VM",
-				"type": "WebActivity",
-				"dependsOn": [
-					{
-						"activity": "ForEachFiles",
-						"dependencyConditions": [
-							"Completed"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"method": "POST",
-					"url": {
-						"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/deallocate?api-version=2023-09-01')",
-						"type": "Expression"
-					},
-					"authentication": {
-						"type": "MSI",
-						"resource": "https://azure.com"
-					}
-				}
-			},
-			{
-				"name": "If Condition1",
-				"type": "IfCondition",
-				"dependsOn": [
-					{
-						"activity": "Get_Blob_files",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@greater(length(activity('Get_Blob_Files').output.childItems), 0)",
-						"type": "Expression"
-					}
+					]
 				}
 			}
 		],
