@@ -326,7 +326,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greater(length(activity('Get_Metadata').output.childItems), 0)",
+						"value": "@greater(length(activity('Get_Blob_Files').output.childItems), 0)",
 						"type": "Expression"
 					}
 				}
