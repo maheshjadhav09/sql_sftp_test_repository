@@ -67,7 +67,7 @@
 				"typeProperties": {
 					"method": "POST",
 					"url": {
-						"value": "@concat('https://azure.com', pipeline().parameters.Subscription_ID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/start?api-version=2023-09-01')",
+						"value": "@concat('https://management.azure.com/subscriptions/', pipeline().parameters.Subscription_ID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/start?api-version=2023-09-01')",
 						"type": "Expression"
 					},
 					"connectVia": {
@@ -129,7 +129,7 @@
 							"typeProperties": {
 								"method": "POST",
 								"url": {
-									"value": "@concat('https://azure.com', pipeline().parameters.Subscription_ID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.DataFactory/factories/', pipeline().DataFactory, '/integrationRuntimes/', pipeline().parameters.SHIR_Name, '/getStatus?api-version=2018-06-01')\n",
+									"value": "@concat('https://management.azure.com/subscriptions/', pipeline().parameters.Subscription_ID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.DataFactory/factories/', pipeline().DataFactory, '/integrationRuntimes/', pipeline().parameters.SHIR_Name, '/getStatus?api-version=2018-06-01')\n",
 									"type": "Expression"
 								},
 								"authentication": {
@@ -164,7 +164,7 @@
 				"typeProperties": {
 					"method": "POST",
 					"url": {
-						"value": "@concat('https://azure.com', pipeline().parameters.Subscription_ID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/deallocate?api-version=2023-09-01')",
+						"value": "@concat('https://management.azure.com/subscriptions/', pipeline().parameters.Subscription_ID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/deallocate?api-version=2023-09-01')",
 						"type": "Expression"
 					},
 					"authentication": {
