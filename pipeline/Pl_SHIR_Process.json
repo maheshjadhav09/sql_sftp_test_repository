@@ -67,7 +67,7 @@
 				"typeProperties": {
 					"method": "POST",
 					"url": {
-						"value": "@concat('https://azure.com', pipeline().parameters.SubID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/start?api-version=2023-09-01')\n",
+						"value": "@concat('https://azure.com', pipeline().parameters.Subscription_ID, '/resourceGroups/', pipeline().parameters.Resource_Group_Name, '/providers/Microsoft.Compute/virtualMachines/', pipeline().parameters.VM_Name, '/start?api-version=2023-09-01')",
 						"type": "Expression"
 					},
 					"connectVia": {
