@@ -179,7 +179,7 @@
 				"type": "array",
 				"defaultValue": [
 					{
-						"name": "test_file.csv"
+						"name": "datadump_2026-08-05T13:27:02_00000.7021783Z.csv.gz"
 					}
 				]
 			},
