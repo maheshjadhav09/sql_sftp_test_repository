@@ -198,6 +198,10 @@
 			"SHIR_Name": {
 				"type": "string",
 				"defaultValue": "SelfHostedintegrationRuntime"
+			},
+			"ADF_Resource_Group_Name": {
+				"type": "string",
+				"defaultValue": "cplybc_rg"
 			}
 		},
 		"annotations": []
