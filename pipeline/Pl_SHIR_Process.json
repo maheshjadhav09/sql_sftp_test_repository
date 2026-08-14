@@ -79,6 +79,7 @@
 									"type": "DelimitedTextSink",
 									"storeSettings": {
 										"type": "SftpWriteSettings",
+										"copyBehavior": "PreserveHierarchy",
 										"operationTimeout": "01:00:00",
 										"useTempFileRename": true
 									},
