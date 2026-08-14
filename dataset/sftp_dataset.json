@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "SftpLocation",
-				"folderPath": "/C:/Users/adf_sftp_user/BlobStorageFiles"
+				"folderPath": "/BlobStorageFiles"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
