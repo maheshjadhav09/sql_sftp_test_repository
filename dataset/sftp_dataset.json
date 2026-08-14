@@ -1,0 +1,22 @@
+{
+	"name": "sftp_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RemoteSftp",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"folderPath": "/C:/Users/adf_sftp_user/BlobStorageFiles"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
