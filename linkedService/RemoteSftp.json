@@ -8,10 +8,10 @@
 			"host": "20.114.142.163",
 			"port": 22,
 			"skipHostKeyValidation": false,
-			"hostKeyFingerprint": "ssh-ed25519 255 KT5/8h7GlVYfs6+6lRFPLcoyXb43cQq0LD055IeSMl0",
+			"hostKeyFingerprint": "ssh-ed25519 32 db:f7:51:ef:6b:62:dc:1c:0a:c7:f6:61:40:ed:c7:d7",
 			"authenticationType": "Basic",
 			"userName": "adf_sftp_user",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlM2Q0ZmUwZS04ZGIxLTQ2MWMtYTFhYi05YmU0YjgxMTUzNTkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhMDIzODJiMC1mMGJkLTRlZjMtOTU1ZS0wNTUxODc3Y2QzMTEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "SelfHostedintegrationRuntime",
