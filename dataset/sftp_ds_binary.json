@@ -16,10 +16,6 @@
 			"location": {
 				"type": "SftpLocation",
 				"folderPath": "/BlobStorageFiles"
-			},
-			"compression": {
-				"type": "gzip",
-				"level": "Optimal"
 			}
 		}
 	}
