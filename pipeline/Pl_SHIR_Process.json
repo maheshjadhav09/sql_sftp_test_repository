@@ -65,14 +65,13 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "DelimitedTextSource",
+									"type": "BinarySource",
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
+										"recursive": true
 									},
 									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
+										"type": "BinaryReadSettings"
 									}
 								},
 								"sink": {
@@ -88,10 +87,13 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "azureBlob_sftp",
+									"referenceName": "azureblob_binary",
 									"type": "DatasetReference",
 									"parameters": {
-										"FileName": "@item().name"
+										"FileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
 									}
 								}
 							],
