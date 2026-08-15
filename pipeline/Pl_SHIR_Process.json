@@ -76,28 +76,15 @@
 									}
 								},
 								"sink": {
-									"type": "DelimitedTextSink",
+									"type": "BinarySink",
 									"storeSettings": {
 										"type": "SftpWriteSettings",
 										"copyBehavior": "PreserveHierarchy",
 										"operationTimeout": "01:00:00",
 										"useTempFileRename": true
-									},
-									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
+								"enableStaging": false
 							},
 							"inputs": [
 								{
@@ -110,10 +97,13 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "sftp_dataset",
+									"referenceName": "sftp_ds_binary",
 									"type": "DatasetReference",
 									"parameters": {
-										"TargetFileName": "@item().name"
+										"sftp_filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
 									}
 								}
 							]
