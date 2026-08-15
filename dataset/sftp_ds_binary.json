@@ -5,6 +5,11 @@
 			"referenceName": "RemoteSftp",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sftp_filename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
