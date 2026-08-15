@@ -1,0 +1,23 @@
+{
+	"name": "azureblob_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_sftp_files",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "sftp_files",
+				"container": "sftpcontainer"
+			}
+		}
+	}
+}
