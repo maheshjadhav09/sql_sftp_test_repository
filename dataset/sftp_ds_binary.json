@@ -1,0 +1,21 @@
+{
+	"name": "sftp_ds_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RemoteSftp",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"folderPath": "/BlobStorageFiles"
+			},
+			"compression": {
+				"type": "gzip",
+				"level": "Optimal"
+			}
+		}
+	}
+}
