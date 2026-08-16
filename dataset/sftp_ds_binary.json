@@ -15,6 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "SftpLocation",
+				"fileName": {
+					"value": "@dataset().sftp_filename",
+					"type": "Expression"
+				},
 				"folderPath": "/BlobStorageFiles"
 			}
 		}

@@ -78,7 +78,7 @@
 									"type": "BinarySink",
 									"storeSettings": {
 										"type": "SftpWriteSettings",
-										"copyBehavior": "PreserveHierarchy",
+										"copyBehavior": "FlattenHierarchy",
 										"operationTimeout": "01:00:00",
 										"useTempFileRename": false
 									}
