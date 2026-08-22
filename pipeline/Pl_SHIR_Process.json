@@ -116,8 +116,6 @@
 			{
 				"name": "Web_VMStart",
 				"type": "WebActivity",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -146,8 +144,6 @@
 			{
 				"name": "Check_VM_Status",
 				"type": "Until",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Web_VMStart",
@@ -210,8 +206,6 @@
 			{
 				"name": "Act_Stop_SHIR_VM",
 				"type": "WebActivity",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "ForEachFiles",
